@@ -29,7 +29,7 @@
     }
 
     function onDo() {
-        var result = UglifyJS.minify(sourceFrom.value, state);
+        var result = win.minify(sourceFrom.value, state);
         hide(sourceFrom), show(sourceTo);
         sourceTo.value = result.error ? result.error.message : result.code;
         sourceTo.focus();
