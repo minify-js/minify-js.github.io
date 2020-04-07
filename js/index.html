@@ -4,96 +4,26 @@
     <meta charset="utf-8">
     <meta content="#000" name="color-scheme">
     <meta content="width=device-width" name="viewport">
-    <meta content="Minify your JavaScript files online." name="description">
+    <meta content="Minify your JavaScript files online by pasting some JavaScript code into the text area below, or by opening multiple JavaScript files at once to be combined in the output." name="description">
     <title>Minify JavaScript Online</title>
     <link href="../favicon.ico" rel="icon">
-    <style>
-    * {
-      box-sizing: border-box;
-    }
-    :root {
-      background: #fff;
-      color: #000;
-      border-top: 4px solid;
-      font-family: serif;
-    }
-    a {
-      color: #00f;
-      text-decoration: none;
-    }
-    a:focus {
-      text-decoration: underline;
-    }
-    a:visited {
-      color: #009;
-    }
-    a, code {
-      word-wrap: break-word;
-    }
-    code {
-      font-family: monospace;
-    }
-    footer, header, main, nav {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    footer hr, header hr {
-      display: none;
-    }
-    footer {
-      border-top: 1px dashed;
-    }
-    header {
-      border-bottom: 1px dashed;
-    }
-    pre {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-    pre code {
-      display: block;
-      background: #eee;
-      padding: 1em;
-    }
-    table {
-      width: 100%;
-    }
-    textarea {
-      display: block;
-      width: 100%;
-      height: 250px;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        background: #000;
-        color: #fff;
-      }
-      a {
-        color: #aaf;
-      }
-      a:visited {
-        color: #77c;
-      }
-      pre code {
-        background: #111;
-      }
-    }
-    </style>
+    <link href="../index.css" rel="stylesheet">
   </head>
   <body>
     <header>
-      <h1>Minify JavaScript Online</h1>
-      <p>Paste your JavaScript code in the text area below, then press the <strong>Minify</strong> button or press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> on your keyboard to minify.</p>
+      <h1><a href="..">Minify</a> &raquo; Minify JavaScript</h1>
+      <p>Paste your JavaScript code into the text area below, or open multiple JavaScript files at once to be combined in the output. This tool supports ES6 syntax!</p>
       <hr>
     </header>
     <main>
-      <form>
+      <form data-files="application/javascript application/x-javascript text/javascript">
         <p>
-          <textarea name="source[from]" placeholder="Try &ldquo;Ctrl + O&rdquo; to open a JavaScript file&hellip;"></textarea>
-          <textarea name="source[to]" readonly style="display: none;"></textarea>
+          <textarea name="source[from]" placeholder="Try &ldquo;Ctrl + O&rdquo; to open JavaScript files&hellip;"></textarea><!--
+       --><textarea hidden name="source[to]" placeholder="Nothing here. Press the &ldquo;Backspace&rdquo; key to reset the form." readonly></textarea>
         </p>
         <p>
-          <button name="r" type="submit">Minify</button>
+          <button name="v" type="submit">Minify</button><!--
+       --><button hidden name="x" type="reset">Back</button>
         </p>
       </form>
       <p><small>JavaScript minifier powered by <a href="https://github.com/mishoo/UglifyJS2" rel="nofollow" target="_blank">UglifyJS</a>.</small></p>
@@ -102,60 +32,7 @@
       <hr>
       <p>&copy; 2020 <a href="https://taufik-nurrohman.js.org">Taufik Nurrohman</a></p>
     </footer>
-    <script src="uglify.min.js"></script>
-    <script>
-    // TODO
-    var form = document.forms[0],
-        r = form.r,
-        sourceFrom = form['source[from]'],
-        sourceTo = form['source[to]'];
-    form.addEventListener('submit', function(e) {
-        var result = UglifyJS.minify(sourceFrom.value);
-        sourceFrom.style.display = 'none';
-        sourceTo.value = result.error ? result.error.message : result.code;
-        sourceTo.style.display = 'block';
-        sourceTo.focus();
-        sourceTo.select();
-        r.parentNode.style.display = 'none';
-        e.preventDefault();
-    }, false);
-    sourceFrom.addEventListener('keydown', function(e) {
-        // Open file
-        if (
-            e.ctrlKey && (
-                e.key && 'o' === e.key ||
-                e.keyCode && 79 === e.keyCode
-            )
-        ) {
-            alert('Handle file open...');
-            e.preventDefault();
-        }
-        // Submit with "Ctrl + Enter"
-        if (
-            e.ctrlKey && (
-                e.key && 'Enter' === e.key ||
-                e.keyCode && 13 === e.keyCode
-            )
-        ) {
-            r.click();
-            e.preventDefault();
-        }
-    }, false);
-    sourceTo.addEventListener('keydown', function(e) {
-        if (
-            (
-                e.key && 'Backspace' === e.key ||
-                e.keyCode && 8 === e.keyCode
-            )
-        ) {
-            sourceTo.style.display = 'none';
-            sourceFrom.style.display = "";
-            sourceFrom.focus();
-            sourceFrom.select();
-            r.parentNode.style.display = "";
-            e.preventDefault();
-        }
-    }, false);
-    </script>
+    <script src="uglify.js/index.js"></script>
+    <script src="../index.js"></script>
   </body>
 </html>
