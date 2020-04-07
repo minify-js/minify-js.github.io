@@ -1,6 +1,6 @@
 (function(win, doc) {
 
-    var form = document.forms[0],
+    var form = doc.forms[0],
         accepts = form.dataset.files.split(/\s+/),
         state = {},
         sourceBack = form.x,
@@ -105,10 +105,9 @@
             file = files[i];
             if (-1 !== accepts.indexOf(type = file.type)) {
                 var r = new FileReader;
-                r._file = file;
                 r.readAsText(file);
                 r.onload = function() {
-                    sourceFrom.value += '// ' + this._file.name + "\n" + this.result + "\n\n";
+                    sourceFrom.value += this.result + "\n\n";
                     sourceFrom.focus();
                     sourceFrom.select();
                 };

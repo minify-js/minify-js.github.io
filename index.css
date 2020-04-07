@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 :root {
   background: #fff;
   color: #000;
@@ -53,6 +56,10 @@ pre code {
 }
 table {
   width: 100%;
+}
+td, th {
+  text-align: left;
+  vertical-align: top;
 }
 textarea {
   display: block;
