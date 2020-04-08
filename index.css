@@ -26,23 +26,35 @@ button {
 code {
   font-family: monospace;
 }
+details label {
+  display: block;
+  margin: 0 0 0 1.25em;
+  position: relative;
+}
+details label + br {
+  display: none;
+}
+details label input[type="checkbox"] {
+  margin: .15em .5em 0 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 100%;
+}
 footer, header, main, nav {
   max-width: 700px;
   margin: 0 auto;
 }
-footer hr, header hr {
-  display: none;
-}
-footer {
+hr {
+  border: 0;
+  color: inherit;
   border-top: 1px dashed;
-}
-header {
-  border-bottom: 1px dashed;
+  height: 0;
 }
 input[type="radio"], input[type="checkbox"] {
   cursor: pointer;
 }
-label, select {
+label, select, summary {
   cursor: pointer;
 }
 pre {

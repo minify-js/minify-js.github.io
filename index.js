@@ -1,8 +1,15 @@
-(function(win, doc) {
+!function(n,r){function t(n,r){function t(n){return decodeURIComponent(n)}function e(n){return void 0!==n}function i(n){return"string"==typeof n}function u(n){return i(n)&&""!==n.trim()?'""'===n||"[]"===n||"{}"===n||'"'===n[0]&&'"'===n.slice(-1)||"["===n[0]&&"]"===n.slice(-1)||"{"===n[0]&&"}"===n.slice(-1):!1}function o(n){if(i(n)){if("true"===n)return!0;if("false"===n)return!1;if("null"===n)return null;if("'"===n.slice(0,1)&&"'"===n.slice(-1))return n.slice(1,-1);if(/^-?(\d*\.)?\d+$/.test(n))return+n;if(u(n))try{return JSON.parse(n)}catch(r){}}return n}function f(n,r,t){for(var e,i=r.split("["),u=0,o=i.length;o-1>u;++u)e=i[u].replace(/\]$/,""),n=n[e]||(n[e]={});n[i[u].replace(/\]$/,"")]=t}var c={},l=n.replace(/^.*?\?/,"");return""===l?c:(l.split(/&(?:amp;)?/).forEach(function(n){var i=n.split("="),u=t(i[0]),l=e(i[1])?t(i[1]):!0;l=!e(r)||r?o(l):l,"]"===u.slice(-1)?f(c,u,l):c[u]=l}),c)}n[r]=t}(window,"q2o");
+
+!function(n,r){function t(n,r,t,o){function u(n){return encodeURIComponent(n)}function i(n){return void 0!==n}function e(n){return null!==n&&"object"==typeof n}function f(n){return n===!0?"true":n===!1?"false":null===n?"null":e(n)?JSON.stringify(n):n+""}function c(n,r){r=r||{};for(var t in n)i(r[t])?e(n[t])&&e(r[t])&&(r[t]=c(n[t],r[t])):r[t]=n[t];return r}function l(n,r,t,o){t=t||0;var i,f,a,v=[],d=r?"%5D":"";for(i in n)f=u(i),a=n[i],e(a)&&o>t?v=c(v,l(a,r+f+d+"%5B",t+1,o)):v[r+f+d]=a;return v}t=t||1;var a,v,d=[],p=l(n,"",0,t);for(a in p)v=p[a],(v!==!1||o)&&(v=v!==!0?"="+u(f(v)):"",d.push(a+v));return d.length?"?"+d.join(r||"&"):""}n[r]=t}(window,"o2q");
+
+(function(win, doc, name) {
 
     var form = doc.forms[0],
+        o = form.querySelector('details'),
         accepts = form.dataset.files.split(/\s+/),
-        state = {},
+        state = {
+            form: {}
+        },
         sourceBack = form.x,
         sourceDo = form.v,
         sourceFrom = form['source[from]'],
@@ -21,6 +28,41 @@
         node.style.display = 'block';
     }
 
+    function doFormStateCreate() {
+        var elements = form.elements,
+            query = "", key, value;
+        for (var i = 0, j = elements.length; i < j; ++i) {
+            key = elements[i].name;
+            value = elements[i].value;
+            if (key) {
+                if ('checkbox' === elements[i].type && !elements[i].checked) {
+                    continue;
+                }
+                query += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+            }
+        }
+        state.form = q2o(query);
+        if (state.form.state && state.form.state.output && state.form.state.output.comments) {
+            // Convert to `RegExp`
+            state.form.state.output.comments = new RegExp(state.form.state.output.comments);
+        }
+    }
+
+    function doSessionRestore() {
+        var session = q2o(localStorage.getItem('session') || ""),
+            elements = form.elements, element;
+        o.open = session.optionsIsOpen;
+        // TODO: Automaticize conversion of `session.form.a.b.c.d` to `session.form['a[b][c][d]']`
+        form.elements['state[output][comments]'].checked = session.form.state.output.comments;
+    }
+
+    function doSessionUpdate() {
+        state.optionsIsOpen = o.open;
+        state.form && state.form.state && state.form.state.source && state.form.state.source.from && (delete state.form.state.source.from);
+        state.form && state.form.state && state.form.state.source && state.form.state.source.to && (delete state.form.state.source.to);
+        localStorage.setItem('session', o2q(state));
+    }
+
     function onBack() {
         hide(sourceTo), reset(sourceFrom);
         sourceFrom.focus();
@@ -29,9 +71,9 @@
     }
 
     function onDo() {
-        var result = win.minify(sourceFrom.value, state);
+        var result = win[name](sourceFrom.value, state.form.state || {});
         hide(sourceFrom), show(sourceTo);
-        sourceTo.value = result.error ? result.error.message : result.code;
+        sourceTo.value = result.value;
         sourceTo.focus();
         sourceTo.select();
         hide(sourceDo), show(sourceBack);
@@ -47,6 +89,7 @@
     }
 
     function onFormSubmit(e) {
+        doFormStateCreate();
         win.location.hash = '#/result';
         e.preventDefault();
     }
@@ -118,6 +161,7 @@
     }
 
     win.addEventListener('hashchange', onLocationHashChange, false);
+    win.addEventListener('beforeunload', doSessionUpdate, false);
 
     form.addEventListener('reset', onFormReset, false);
     form.addEventListener('submit', onFormSubmit, false);
@@ -135,4 +179,6 @@
 
     onLocationHashChange(0);
 
-})(this, this.document);
+    doSessionRestore();
+
+})(this, this.document, 'minify');

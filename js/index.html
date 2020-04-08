@@ -21,12 +21,20 @@
           <textarea name="source[from]" placeholder="Try &ldquo;Ctrl + O&rdquo; to open JavaScript files&hellip;"></textarea><!--
        --><textarea hidden name="source[to]" placeholder="Nothing here. Press the &ldquo;Backspace&rdquo; key to reset the form." readonly></textarea>
         </p>
+        <details>
+          <summary>Options</summary>
+          <p>
+            <label>
+              <input checked name="state[output][comments]" type="checkbox" value="@license|@preserve|^[!*]">
+              <span>Preserve potentially important code comments.<br><small>Such as license comments and attributions.</small></span>
+            </label>
+          </p>
+        </details>
         <p>
           <button name="v" type="submit">Minify</button><!--
        --><button hidden name="x" type="reset">Back</button>
         </p>
       </form>
-      <p><small>JavaScript minifier powered by <a href="https://github.com/mishoo/UglifyJS2" rel="nofollow" target="_blank">@mishoo/UglifyJS2</a>.</small></p>
     </main>
     <footer>
       <hr>
@@ -36,7 +44,8 @@
     <script src="../index.js"></script>
     <script>
     function minify(text, o) {
-        return UglifyJS.minify(text, o);
+        var out = UglifyJS.minify(text, o);
+        return {value: out.error ? out.error.message : out.code};
     }
     </script>
   </body>
