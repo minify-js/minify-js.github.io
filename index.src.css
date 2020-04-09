@@ -54,7 +54,8 @@ details label {
 details label + br {
   display: none;
 }
-details label input[type="checkbox"] {
+details label input[type="checkbox"],
+details label input[type="radio"] {
   margin: .15em .5em 0 0;
   position: absolute;
   top: 0;
