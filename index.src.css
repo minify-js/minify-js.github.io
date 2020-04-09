@@ -8,14 +8,8 @@
   font-family: serif;
 }
 a {
-  color: #00f;
-  text-decoration: none;
-}
-a:focus {
-  text-decoration: underline;
-}
-a:visited {
   color: #009;
+  text-decoration: none;
 }
 a, code {
   word-wrap: break-word;
@@ -25,16 +19,16 @@ button, input, select, textarea {
   border: 1px solid;
   color: inherit;
   margin: 0;
-  padding: .5em;
+  padding: .25em;
   font: inherit;
 }
 button {
-  background: #00f;
+  background: #009;
   color: #fff;
   border: 0;
-  border-radius: .25em;
-  padding-right: .65em;
-  padding-left: .65em;
+  font-weight: bolder;
+  padding-right: .5em;
+  padding-left: .5em;
   cursor: pointer;
 }
 button::-moz-focus-inner {
@@ -71,7 +65,7 @@ hr {
   border-top: 1px dashed;
   height: 0;
 }
-input[type="radio"], input[type="checkbox"] {
+input[type="checkbox"], input[type="radio"] {
   cursor: pointer;
 }
 label, select, summary {
@@ -104,4 +98,9 @@ textarea[readonly] {
 }
 [hidden] {
   display: none;
+}
+body > p:first-child {
+  background: #cde;
+  margin: 0;
+  padding: .75em 1em;
 }
