@@ -49,7 +49,7 @@
                 query += '&' + encodeURIComponent(key) + ('undefined' === typeof value ? "" : '=' + encodeURIComponent(value));
             }
         }
-        state.form = query ? q2o(query.slice(1)) : {};console.log(state)
+        state.form = query ? q2o(query.slice(1)) : {};
     }
 
     function doSessionRestore() {
@@ -218,11 +218,11 @@
     doSessionRestore();
 
     // Google Analytic
-    if (-1 !== ['http', 'https'].indexOf(win.location.protocol) && '127.0.0.1' !== win.location.hostname) {
+    if (-1 !== ['http:', 'https:'].indexOf(win.location.protocol) && '127.0.0.1' !== win.location.hostname) {
         addEventTo(win, 'load', function() {
             !function(e){function t(){e.dataLayer.push(arguments)}e.dataLayer=e.dataLayer||[],t("js",new Date),t("config","UA-132078233-1")}(win);
             var script = doc.createElement('script');
-            script.async = true;
+            // script.async = true;
             script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-132078233-1';
             doc.body.appendChild(script);
         });
