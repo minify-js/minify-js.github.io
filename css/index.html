@@ -1,1 +1,67 @@
-Coming soon.
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta content="#000" name="theme-color">
+    <meta content="width=device-width" name="viewport">
+    <meta content="Minify your CSS files online by pasting some CSS code into the text area below, or by opening multiple CSS files at once to be combined in the output." name="description">
+    <title>Minify CSS Online</title>
+    <link href="../favicon.ico" rel="icon">
+    <link href="../index.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1><a href="..">Minify</a> &raquo; Minify CSS</h1>
+      <p>Paste your CSS code into the text area below, or open multiple CSS files at once to be combined in the output.</p>
+      <hr>
+    </header>
+    <main>
+      <form>
+        <p>
+          <textarea name="source[from]" placeholder="Try &ldquo;Ctrl + O&rdquo; to open CSS files&hellip;"></textarea><!--
+       --><textarea hidden name="source[to]" placeholder="Nothing here. Press the &ldquo;Backspace&rdquo; key to reset the form." readonly></textarea>
+        </p>
+        <details>
+          <summary>Options</summary>
+          <p>
+            <label>
+              <input name="state[level]" type="radio" value="0">
+              <span>Level 0 optimizations.<br><small>Simply means &ldquo;no optimizations&rdquo;. Use it when you&rsquo;d like to <del>inline imports</del> and/or rebase URLs but skip everything else.</small></span>
+            </label>
+            <br>
+            <label>
+              <input checked name="state[level]" type="radio" value="1">
+              <span>Level 1 optimizations.<br><small>Operate on single properties only, e.g. can remove units when not required, turn RGB colors to a shorter HEX representation, remove comments, etc.</small></span>
+            </label>
+            <br>
+            <label>
+              <input name="state[level]" type="radio" value="2">
+              <span>Level 2 optimizations.<br><small>Operate at rules or multiple properties level, e.g. can remove duplicate rules, remove properties redefined further down a stylesheet, or restructure rules by moving them around. Please note that if level 2 optimizations are turned on then, unless explicitely disabled, level 1 optimizations are applied as well.</small></span>
+            </label>
+          </p>
+        </details>
+        <p>
+          <button name="v" title="Ctrl + Enter" type="submit">Minify</button><!--
+       --><button hidden name="x" title="Backspace" type="reset">Back</button> <label>
+            <input name="auto" type="checkbox" value="true">
+            <span>Minify on paste</span>
+          </label>
+        </p>
+        <input name="state[inline]" type="hidden" value="false">
+        <input name="files" type="hidden" value="text/css">
+      </form>
+    </main>
+    <footer>
+      <hr>
+      <p>&copy; 2020 <a href="https://taufik-nurrohman.js.org">Taufik Nurrohman</a></p>
+    </footer>
+    <script src="minify.css/index.js"></script>
+    <script src="../index.js#minify"></script>
+    <script>
+    function minify(text, o) {
+        var out = (new CleanCSS(o)).minify(text);
+        return {value: out.errors && out.errors.length ? out.errors.join('\n') : out.styles};
+    }
+    </script>
+  </body>
+</html>

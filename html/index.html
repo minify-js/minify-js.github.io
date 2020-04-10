@@ -1,1 +1,81 @@
-Coming soon.
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta content="#000" name="theme-color">
+    <meta content="width=device-width" name="viewport">
+    <meta content="Minify your HTML files online by pasting some HTML code into the text area below, or by opening a HTML file to start the minify." name="description">
+    <title>Minify HTML Online</title>
+    <link href="../favicon.ico" rel="icon">
+    <link href="../index.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1><a href="..">Minify</a> &raquo; Minify HTML</h1>
+      <p>Paste your HTML code into the text area below, or open a HTML file to start the minify.</p>
+      <hr>
+    </header>
+    <main>
+      <form>
+        <p>
+          <textarea name="source[from]" placeholder="Try &ldquo;Ctrl + O&rdquo; to open HTML files&hellip;"></textarea><!--
+       --><textarea hidden name="source[to]" placeholder="Nothing here. Press the &ldquo;Backspace&rdquo; key to reset the form." readonly></textarea>
+        </p>
+        <details>
+          <summary>Options</summary>
+          <p>
+            <label>
+              <input checked name="state[removeComments]" type="checkbox" value="true">
+              <span>Remove HTML comments.<br><small>Remove <code>&lt;!-- asdf --&gt;</code> sequences.</small></span>
+            </label>
+            <br>
+            <label>
+              <input checked name="state[removeCommentsFromCDATA]" type="checkbox" value="true">
+              <span>Remove CDATA comments in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.<br><small>From <code>&lt;style&gt;&lt;!-- asdf --&gt;&lt;/style&gt;</code> to <code>&lt;style&gt;asdf&lt;/style&gt;</code>.</small></span>
+            </label>
+            <br>
+            <label>
+              <input checked name="state[removeCDATASectionsFromCDATA]" type="checkbox" value="true">
+              <span>Remove CDATA sections in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.<br><small>From <code>&lt;style&gt;/* &lt;![CDATA[ */ asdf /* ]]&gt; */&lt;/style&gt;</code> to <code>&lt;style&gt;asdf&lt;/style&gt;</code>.</small></span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input checked name="state[removeAttributeQuotes]" type="checkbox" value="true">
+              <span>Remove attribute&rsquo;s quotes.<br><small>Remove HTML attribute&rsquo;s quote characters where possible.</small></span>
+            </label>
+          </p>
+        </details>
+        <p>
+          <button name="v" title="Ctrl + Enter" type="submit">Minify</button><!--
+       --><button hidden name="x" title="Backspace" type="reset">Back</button> <label>
+            <input name="auto" type="checkbox" value="true">
+            <span>Minify on paste</span>
+          </label>
+        </p>
+        <input name="state[caseSensitive]" type="hidden" value="true">
+        <input name="state[collapseBooleanAttributes]" type="hidden" value="true">
+        <input name="state[collapseWhitespace]" type="hidden" value="true">
+        <input name="state[decodeEntities]" type="hidden" value="true">
+        <input name="state[minifyCSS]" type="hidden" value="true">
+        <input name="state[minifyJS]" type="hidden" value="true">
+        <input name="state[quoteCharacter]" type="hidden" value="&quot;">
+        <input name="state[removeScriptTypeAttributes]" type="hidden" value="true">
+        <input name="state[removeStyleLinkTypeAttributes]" type="hidden" value="true">
+        <input name="state[useShortDoctype]" type="hidden" value="false">
+        <input name="files" type="hidden" value="application/xml application/xhtml application/xhtml+xml image/svg+xml text/html text/xhtml text/xml">
+      </form>
+    </main>
+    <footer>
+      <hr>
+      <p>&copy; 2020 <a href="https://taufik-nurrohman.js.org">Taufik Nurrohman</a></p>
+    </footer>
+    <script src="minify.html/index.js"></script>
+    <script src="../index.js#minify"></script>
+    <script>
+    function minify(text, o) {
+        return {value: require('html-minifier').minify(text, o)};
+    }
+    </script>
+  </body>
+</html>
