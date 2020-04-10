@@ -25,14 +25,17 @@
           <summary>Options</summary>
           <p>
             <label>
-              <input checked name="state[output][comments]" type="checkbox" value="true">
+              <input checked name="state[output][comments]" type="checkbox" value="@license|@preserve|^[!*]">
               <span>Preserve potentially important code comments.<br><small>Such as license comments and attributions.</small></span>
             </label>
           </p>
         </details>
         <p>
           <button name="v" title="Ctrl + Enter" type="submit">Minify</button><!--
-       --><button hidden name="x" title="Backspace" type="reset">Back</button>
+       --><button hidden name="x" title="Backspace" type="reset">Back</button> <label>
+            <input name="auto" type="checkbox" value="true">
+            <span>Minify on paste</span>
+          </label>
         </p>
         <input name="files" type="hidden" value="application/javascript application/x-javascript text/javascript">
       </form>
@@ -47,7 +50,7 @@
     function minify(text, o) {
         if (o && o.output && o.output.comments) {
             // Convert to `RegExp`
-            o.output.comments = /@license|@preserve|^[!*]/;
+            o.output.comments = new RegExp(o.output.comments);
         }
         var out = UglifyJS.minify(text, Object.assign({
             output: {

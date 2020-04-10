@@ -27,6 +27,7 @@
     }
 
     function reset(node) {
+        node.removeAttribute('hidden');
         node.style.display = "";
     }
 
@@ -40,25 +41,28 @@
             key = elements[i].name;
             value = elements[i].value;
             if (key) {
+                if (-1 !== ['source[from]', 'source[to]'].indexOf(key)) {
+                    continue; // Do not store text area value to session
+                }
                 if ('checkbox' === elements[i].type && !elements[i].checked) {
                     continue;
                 }
                 if ('radio' === elements[i].type) {
                     value = elements[key].value; // Take current value from `RadioNodeList`
                 }
-                query += '&' + encodeURIComponent(key) + ('undefined' === typeof value ? "" : '=' + encodeURIComponent(value));
+                query += '&' + encodeURIComponent(key) + (value ? '=' + encodeURIComponent(value) : "");
             }
         }
-        state.form = query ? q2o(query.slice(1)) : {};
+        state.form = query ? q2o('?' + query.slice(1)) : {};
     }
 
     function doSessionRestore() {
         var session = q2o(localStorage.getItem('session') || ""),
-            names = o2q(session.form || {}),
+            names = o2q(session.form || {}, false, 5),
             namesData = {}, key;
         (names ? names.slice(1).split('&') : []).forEach(function(data) {
             data = data.split('=');
-            namesData[decodeURIComponent(data[0])] = 'undefined' === typeof data[1] ? decodeURIComponent(data[1]) : true;
+            namesData[decodeURIComponent(data[0])] = 'undefined' !== typeof data[1] ? decodeURIComponent(data[1]) : true;
         });
         for (key in namesData) {
             if (!elements[key]) {
@@ -77,13 +81,13 @@
             }
         }
         o.open = session.optionsIsOpen;
+        elements.auto.checked = session.submitIsAuto;
     }
 
     function doSessionUpdate() {
-        doFormStateCreate();
         state.optionsIsOpen = o.open;
-        state.form && state.form.state && state.form.state.source && state.form.state.source.from && (delete state.form.state.source.from);
-        state.form && state.form.state && state.form.state.source && state.form.state.source.to && (delete state.form.state.source.to);
+        state.submitIsAuto = elements.auto.checked;
+        doFormStateCreate();
         localStorage.setItem('session', o2q(state));
     }
 
@@ -100,7 +104,7 @@
         sourceTo.value = result.value;
         sourceTo.focus();
         sourceTo.select();
-        hide(sourceDo), hide(o), show(sourceBack);
+        hide(sourceDo), hide(o), reset(sourceBack);
     }
 
     function onLocationHashChange(e) {
@@ -149,6 +153,16 @@
         }
     }
 
+    function onInputPaste() {
+        if (elements.auto.checked) {
+            sourceDo.click();
+        }
+    }
+
+    function onOutputCut() {
+        sourceBack.click();
+    }
+
     function onOutputKeyDown(e) {
         var ctrlKey = e.ctrlKey,
             key = e.key,
@@ -192,6 +206,11 @@
                 alert('MIME type `' + type + '` is not allowed.');
             }
         }
+        setTimeout(function() {
+            if (elements.auto.checked) {
+                sourceDo.click();
+            }
+        }, 1000);
     }
 
     addEventTo(win, 'hashchange', onLocationHashChange);
@@ -202,7 +221,9 @@
 
     addEventTo(sourceFrom, 'dblclick', onInputDoubleClick);
     addEventTo(sourceFrom, 'keydown', onInputKeyDown);
+    addEventTo(sourceFrom, 'paste', onInputPaste);
 
+    addEventTo(sourceTo, 'cut', onOutputCut);
     addEventTo(sourceTo, 'keydown', onOutputKeyDown);
 
     sourcePicker.type = 'file';

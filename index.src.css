@@ -5,7 +5,7 @@
   background: #fff;
   color: #000;
   border-top: 4px solid;
-  font-family: serif;
+  font: normal normal 16px/1.25 serif;
 }
 a {
   color: #009;
@@ -15,12 +15,14 @@ a, code {
   word-wrap: break-word;
 }
 button, input, select, textarea {
+  position: relative;
   background: #ffa;
   border: 1px solid;
   color: inherit;
   margin: 0;
   padding: .25em;
   font: inherit;
+  vertical-align: middle;
 }
 button {
   background: #009;
@@ -37,23 +39,12 @@ button::-moz-focus-inner {
   border: 0;
   outline: 0;
 }
+button + label {
+  margin-left: .5em;
+}
 code, textarea {
   font-family: monospace;
-}
-details label {
-  display: block;
-  margin: 0 0 0 1.25em;
-  position: relative;
-}
-details label + br {
-  display: none;
-}
-details label input[type="checkbox"],
-details label input[type="radio"] {
-  margin: .15em .5em 0 0;
-  position: absolute;
-  top: 0;
-  right: 100%;
+  font-size: 80%;
 }
 footer, header, main, nav {
   max-width: 700px;
@@ -66,10 +57,24 @@ hr {
   height: 0;
 }
 input[type="checkbox"], input[type="radio"] {
+  width: .8em;
+  height: .8em;
   cursor: pointer;
 }
 label, select, summary {
   cursor: pointer;
+}
+label {
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: start;
+}
+label input {
+  margin-top: .125em;
+}
+label input + span {
+  flex: 1;
+  padding-left: .5em;
 }
 pre {
   white-space: pre-wrap;
@@ -92,9 +97,6 @@ textarea {
   width: 100%;
   min-height: 250px;
   resize: vertical;
-}
-textarea[readonly] {
-  border-style: dotted;
 }
 [hidden] {
   display: none;
