@@ -4,7 +4,8 @@
 
 (function(win, doc) {
 
-    var name = doc.currentScript.src.split('#')[1],
+    var body = doc.body,
+        name = doc.currentScript.src.split('#')[1],
         form = doc.forms[0],
         elements = form.elements,
         o = form.querySelector('details'),
@@ -232,20 +233,35 @@
 
     addEventTo(sourcePicker, 'change', onPickerChange);
 
-    doc.body.appendChild(sourcePicker);
+    body.appendChild(sourcePicker);
 
     onLocationHashChange(0);
 
     doSessionRestore();
 
-    // Google Analytic
+    // Load only in production
     if (-1 !== ['http:', 'https:'].indexOf(win.location.protocol) && '127.0.0.1' !== win.location.hostname) {
         addEventTo(win, 'load', function() {
-            !function(e){function t(){e.dataLayer.push(arguments)}e.dataLayer=e.dataLayer||[],t("js",new Date),t("config","UA-132078233-1")}(win);
-            var script = doc.createElement('script');
-            // script.async = true;
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-132078233-1';
-            doc.body.appendChild(script);
+            // Google Analytics
+            function push() {
+                win.dataLayer.push(arguments);
+            }
+            win.dataLayer = win.dataLayer || [];
+            push('js', new Date);
+            push('config', 'UA-132078233-1');
+            var analytic = doc.createElement('script');
+            // script.analytic = true;
+            analytic.src = 'https://www.googletagmanager.com/gtag/js?id=UA-132078233-1';
+            body.appendChild(analytic);
+            // Google AdSense Name: JavaScript Tools
+            (adsbygoogle = win.adsbygoogle || []).push({});
+            var p = doc.createElement('p'),
+                adsense = doc.createElement('script');
+            p.innerHTML = '<ins class="adsbygoogle" data-ad-client="ca-pub-4884309229437815" data-ad-slot="3296555795" style="display:block;min-height:15px;"></ins>';
+            // adsense.async = true;
+            adsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+            doc.querySelector('body>main').appendChild(p);
+            body.appendChild(adsense);
         });
     }
 
