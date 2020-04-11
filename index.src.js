@@ -201,7 +201,7 @@
                     sourceFrom.value += value + "\n\n";
                     sourceFrom.focus();
                     sourceFrom.selectionStart = v;
-                    sourceFrom.selectionEnd = v + value.length;
+                    sourceFrom.selectionEnd = v + value.length + 2;
                 };
             } else if (type) {
                 alert('MIME type `' + type + '` is not allowed.');
@@ -211,7 +211,7 @@
             if (elements.auto.checked) {
                 sourceDo.click();
             }
-        }, 1000);
+        }, 300);
     }
 
     addEventTo(win, 'hashchange', onLocationHashChange);
@@ -250,7 +250,7 @@
             push('js', new Date);
             push('config', 'UA-132078233-1');
             var analytic = doc.createElement('script');
-            // script.analytic = true;
+            // script.async = true;
             analytic.src = 'https://www.googletagmanager.com/gtag/js?id=UA-132078233-1';
             body.appendChild(analytic);
             // Google AdSense Name: JavaScript Tools
