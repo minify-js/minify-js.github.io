@@ -248,10 +248,10 @@
             }
             win.dataLayer = win.dataLayer || [];
             push('js', new Date);
-            push('config', 'UA-132078233-1');
+            push('config', 'UA-163395040-1');
             var analytic = doc.createElement('script');
             // script.async = true;
-            analytic.src = 'https://www.googletagmanager.com/gtag/js?id=UA-132078233-1';
+            analytic.src = 'https://www.googletagmanager.com/gtag/js?id=UA-163395040-1';
             body.appendChild(analytic);
             // Google AdSense Name: JavaScript Tools
             (adsbygoogle = win.adsbygoogle || []).push({});
