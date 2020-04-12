@@ -30,19 +30,19 @@
             </label>
             <br>
             <label>
-              <input checked name="state[removeCommentsFromCDATA]" type="checkbox" value="true">
-              <span>Remove CDATA comments in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.<br><small>From <code>&lt;style&gt;&lt;!-- asdf --&gt;&lt;/style&gt;</code> to <code>&lt;style&gt;asdf&lt;/style&gt;</code>.</small></span>
-            </label>
-            <br>
-            <label>
-              <input checked name="state[removeCDATASectionsFromCDATA]" type="checkbox" value="true">
-              <span>Remove CDATA sections in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.<br><small>From <code>&lt;style&gt;/* &lt;![CDATA[ */ asdf /* ]]&gt; */&lt;/style&gt;</code> to <code>&lt;style&gt;asdf&lt;/style&gt;</code>.</small></span>
+              <input checked name="state[removeAttributeQuotes]" type="checkbox" value="true">
+              <span>Remove HTML attribute&rsquo;s quotes.<br><small>Remove HTML attribute&rsquo;s quote characters where possible.</small></span>
             </label>
           </p>
           <p>
             <label>
-              <input checked name="state[removeAttributeQuotes]" type="checkbox" value="true">
-              <span>Remove HTML attribute&rsquo;s quotes.<br><small>Remove HTML attribute&rsquo;s quote characters where possible.</small></span>
+              <input checked name="state[removeCommentsFromCDATA]" type="checkbox" value="true">
+              <span>Remove CDATA comments in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.<br><small>From <code>&lt;style&gt;<mark>&lt;!--</mark> asdf <mark>--&gt;</mark>&lt;/style&gt;</code> to <code>&lt;style&gt;asdf&lt;/style&gt;</code>.</small></span>
+            </label>
+            <br>
+            <label>
+              <input checked name="state[removeCDATASectionsFromCDATA]" type="checkbox" value="true">
+              <span>Remove CDATA sections in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.<br><small>From <code>&lt;style&gt;<mark>/* &lt;![CDATA[ */</mark> asdf <mark>/* ]]&gt; */</mark>&lt;/style&gt;</code> to <code>&lt;style&gt;asdf&lt;/style&gt;</code>.</small></span>
             </label>
           </p>
         </details>
