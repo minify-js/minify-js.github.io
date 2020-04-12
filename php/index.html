@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta content="#000" name="theme-color">
+    <meta content="width=device-width" name="viewport">
+    <meta content="Minify your PHP files online by pasting some PHP code into the text area below, or by opening multiple PHP files at once to be combined in the output." name="description">
+    <title>Minify PHP Online</title>
+    <link href="../favicon.ico" rel="icon">
+    <link href="../index.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1><a href="..">Minify</a> &raquo; Minify PHP</h1>
+      <p>Paste your PHP code into the text area below, or open multiple PHP files at once to be combined in the output.</p>
+      <hr>
+    </header>
+    <main>
+      <form>
+        <p>
+          <textarea name="source[from]" placeholder="Try &ldquo;Ctrl + O&rdquo; to open PHP files&hellip;"></textarea><!--
+       --><textarea hidden name="source[to]" placeholder="Nothing here. Press the &ldquo;Backspace&rdquo; key to reset the form." readonly></textarea>
+        </p>
+        <details>
+          <summary>Options</summary>
+          <p>
+            <label>
+              <input checked name="state[comments]" type="checkbox" value="2">
+              <span>Preserve potentially important code comments.<br><small>Such as license comments and attributions.</small></span>
+            </label>
+          </p>
+        </details>
+        <p>
+          <button name="v" title="Ctrl + Enter" type="submit">Minify</button><!--
+       --><button hidden name="x" title="Backspace" type="reset">Back</button> <label>
+            <input name="auto" type="checkbox" value="true">
+            <span>Minify on paste</span>
+          </label>
+        </p>
+        <input name="files" type="hidden" value="application/php application/x-httpd-php application/x-php text/php text/x-php">
+      </form>
+    </main>
+    <footer>
+      <hr>
+      <p>&copy; 2020 <a href="https://taufik-nurrohman.js.org">Taufik Nurrohman</a></p>
+    </footer>
+    <script src="minify.php/index.js"></script>
+    <script src="../index.js#minify"></script>
+    <script>
+    function minify(text, o) {
+        return {value: minify_php(text, o.comments || 0)};
+    }
+    </script>
+  </body>
+</html>

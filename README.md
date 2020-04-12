@@ -11,3 +11,4 @@ Credits
  - CSS Minifier: https://github.com/jakubpawlowicz/clean-css
  - HTML Minifier: https://github.com/kangax/html-minifier
  - JavaScript Minifier: https://github.com/mishoo/UglifyJS2
+ - PHP Tokenizer: https://github.com/glayzzle/php-parser
