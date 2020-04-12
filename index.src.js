@@ -17,7 +17,9 @@
         sourceDo = elements.v,
         sourceFrom = elements['source[from]'],
         sourcePicker = doc.createElement('input'),
-        sourceTo = elements['source[to]'];
+        sourceTo = elements['source[to]'],
+
+        currentSession = localStorage.getItem('session');
 
     function addEventTo(node, name, fn) {
         node.addEventListener(name, fn, false);
@@ -58,7 +60,10 @@
     }
 
     function doSessionRestore() {
-        var session = q2o(localStorage.getItem('session') || ""),
+        if (null === currentSession) {
+            return; // Do nothing on first visit
+        }
+        var session = q2o(currentSession || ""),
             names = o2q(session.form || {}, false, 5),
             namesData = {}, key;
         (names ? names.slice(1).split('&') : []).forEach(function(data) {
