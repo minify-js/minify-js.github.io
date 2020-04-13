@@ -258,15 +258,6 @@
             // script.async = true;
             analytic.src = 'https://www.googletagmanager.com/gtag/js?id=UA-163395040-1';
             body.appendChild(analytic);
-            // Google AdSense Name: JavaScript Tools
-            (adsbygoogle = win.adsbygoogle || []).push({});
-            var p = doc.createElement('p'),
-                adsense = doc.createElement('script');
-            p.innerHTML = '<ins class="adsbygoogle" data-ad-client="ca-pub-4884309229437815" data-ad-slot="3296555795" style="display:block;min-height:15px;"></ins>';
-            // adsense.async = true;
-            adsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-            doc.querySelector('body>main').appendChild(p);
-            body.appendChild(adsense);
         });
     }
 
