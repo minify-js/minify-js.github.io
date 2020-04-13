@@ -24,19 +24,19 @@
         <details>
           <summary>Options</summary>
           <p>
-            <label>
+            <label title="Simply means &ldquo;no optimizations&rdquo;. Use it when you&rsquo;d like to rebase URLs but skip everything else.">
               <input name="state[level]" type="radio" value="0">
-              <span>Level 0 optimizations.<br><small>Simply means &ldquo;no optimizations&rdquo;. Use it when you&rsquo;d like to <del>inline imports</del> and/or rebase URLs but skip everything else.</small></span>
+              <span>Level 0 optimizations.</span>
             </label>
             <br>
-            <label>
+            <label title="Operate on single properties only, e.g. can remove units when not required, turn RGB colors to a shorter HEX representation, remove comments, etc.">
               <input checked name="state[level]" type="radio" value="1">
-              <span>Level 1 optimizations.<br><small>Operate on single properties only, e.g. can remove units when not required, turn RGB colors to a shorter HEX representation, remove comments, etc.</small></span>
+              <span>Level 1 optimizations.</span>
             </label>
             <br>
-            <label>
+            <label title="Operate at rules or multiple properties level, e.g. can remove duplicate rules, remove properties redefined further down a stylesheet, or restructure rules by moving them around. Please note that if level 2 optimizations are turned on then, unless explicitely disabled, level 1 optimizations are applied as well.">
               <input name="state[level]" type="radio" value="2">
-              <span>Level 2 optimizations.<br><small>Operate at rules or multiple properties level, e.g. can remove duplicate rules, remove properties redefined further down a stylesheet, or restructure rules by moving them around. Please note that if level 2 optimizations are turned on then, unless explicitely disabled, level 1 optimizations are applied as well.</small></span>
+              <span>Level 2 optimizations.</span>
             </label>
           </p>
         </details>

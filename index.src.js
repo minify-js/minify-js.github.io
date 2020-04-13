@@ -209,7 +209,7 @@
                     sourceFrom.selectionEnd = v + value.length + 2;
                 };
             } else if (type) {
-                alert('MIME type `' + type + '` is not allowed.');
+                alert('MIME type “' + type + '” is not allowed.');
             }
         }
         setTimeout(function() {

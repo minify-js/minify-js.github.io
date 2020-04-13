@@ -24,25 +24,25 @@
         <details>
           <summary>Options</summary>
           <p>
-            <label>
+            <label title="Remove `&lt;!-- asdf --&gt;` sequences.">
               <input checked name="state[removeComments]" type="checkbox" value="true">
-              <span>Remove HTML comments.<br><small>Remove <code>&lt;!-- asdf --&gt;</code> sequences.</small></span>
+              <span>Remove HTML comments.</span>
             </label>
             <br>
-            <label>
+            <label title="Remove HTML attribute&rsquo;s quote characters where possible.">
               <input checked name="state[removeAttributeQuotes]" type="checkbox" value="true">
-              <span>Remove HTML attribute&rsquo;s quotes.<br><small>Remove HTML attribute&rsquo;s quote characters where possible.</small></span>
+              <span>Remove HTML attribute&rsquo;s quotes.</span>
             </label>
           </p>
           <p>
-            <label>
+            <label title="From `&lt;style&gt;&lt;!-- asdf --&gt;&lt;/style&gt;` to `&lt;style&gt;asdf&lt;/style&gt;`.">
               <input checked name="state[removeCommentsFromCDATA]" type="checkbox" value="true">
-              <span>Remove CDATA comments in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.<br><small>From <code>&lt;style&gt;<mark>&lt;!--</mark> asdf <mark>--&gt;</mark>&lt;/style&gt;</code> to <code>&lt;style&gt;asdf&lt;/style&gt;</code>.</small></span>
+              <span>Remove CDATA comments in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.</span>
             </label>
             <br>
-            <label>
+            <label title="From `&lt;style&gt;/* &lt;![CDATA[ */ asdf /* ]]&gt; */&lt;/style&gt;` to `&lt;style&gt;asdf&lt;/style&gt;`.">
               <input checked name="state[removeCDATASectionsFromCDATA]" type="checkbox" value="true">
-              <span>Remove CDATA sections in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.<br><small>From <code>&lt;style&gt;<mark>/* &lt;![CDATA[ */</mark> asdf <mark>/* ]]&gt; */</mark>&lt;/style&gt;</code> to <code>&lt;style&gt;asdf&lt;/style&gt;</code>.</small></span>
+              <span>Remove CDATA sections in <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.</span>
             </label>
           </p>
         </details>
