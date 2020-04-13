@@ -24,9 +24,9 @@
         <details>
           <summary>Options</summary>
           <p>
-            <label>
-              <input checked name="state[comments]" type="checkbox" value="2">
-              <span>Preserve potentially important code comments.<br><small>Such as license comments and attributions.</small></span>
+            <label title="Such as license comments and attributions.">
+              <input checked name="state[preserve_comments]" type="checkbox" value="2">
+              <span>Preserve potentially important code comments.</span>
             </label>
           </p>
         </details>
@@ -48,7 +48,7 @@
     <script src="../index.js#minify"></script>
     <script>
     function minify(text, o) {
-        return {value: minify_php(text, o.comments || 0)};
+        return {value: minify_php(text, o.preserve_comments || 0)};
     }
     </script>
   </body>
